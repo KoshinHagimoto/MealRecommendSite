@@ -1,0 +1,10 @@
+__pychche__/
+
+.env
+
+/venv/
+
+/static/*
+!/static/.gitkeep
+
+db.sqlight3

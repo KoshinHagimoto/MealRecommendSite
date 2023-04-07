@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block h1 %}Meal Recommender{% endblock %}
+
+{% block content %}
+    <div class="row">
+       {% for tag in tag_list %}
+           <div class="col">
+           <div class="p-1 m-1 bg-light border border-success rounded">
+              <a class="text-success text-center" href="{% url 'meal:tag' tag %}">{{ tag.name }}</a>
+           </div>
+           </div>
+       {% endfor %}
+    <div class="col"><h5 class="px-2"><a href="{% url 'meal:index' %}?q=rating">Average Rating</a></h5></div>
+    <div class="col"><h5 class="px-2"><a href="{% url 'meal:index' %}?q=date">Date</a></h5></div>
+        <div class="col"><h5 class="px-2"><a href="{% url 'meal:index' %}?q=country">Country</a></h5></div>
+    </div>
+    {% for meal in meal_list %}
+        <a href="{% url 'meal:detail' meal.id %}">
+             <div class="row">
+                 <div class="col-md-3 px-md-0 col-12">
+                     <img src="{{ meal.imageUrl }}" class="w-100" alt="...">
+                 </div>
+                 <div class="col-md-9 p-3 col-12">
+                     <h3>{{ meal.name }} <span class="h5">({{ meal.countryOfOrigin }})</span></h3>
+                     <div class="d-flex justify-content-start">
+                         <div class="px-2 align-middle">
+                             <h5 class="mt-3">{{ meal.getAvgRating|floatformat:2 }} ({{ meal.NumberOfVotes }})</h5>
+                         </div>
+                     </div>
+                     <div class="text-start text-truncate">
+                         {{ meal.description }}
+                     </div>
+                 </div>
+             </div>
+        </a>
+    {% endfor %}
+
+
+{% endblock %}

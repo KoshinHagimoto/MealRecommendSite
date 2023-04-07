@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-12 mx-auto">
+            <div class="mt-5 row justify-content-center">
+                <div class="col-md-6 col-12">
+                    <h1 class="m-2">{{ meal.name }}</h1>
+                    <img class="w-100" src="{{ meal.imageUrl }}" alt="Meal img">
+                    <h4 class="mt-3">Country of origin: {{ meal.countryOfOrigin }}</h4>
+                    <h4 class="mt-3">Avg Score: {{ meal.getAvgRating|floatformat:2 }}</h4>
+                    <h4 class="mt-3">Votes: {{ meal.NumberOfVotes }}</h4>
+                    <h4 class="mt-3">Description: {{ meal.description }}</h4>
+                    <h3 class="mt-3">Rating</h3>
+                       <div>
+                        <form action="" method="post">
+                            {% csrf_token %}
+                            <div class="d-flex justify-content-around">
+                                <select class="form-control" name="rating">
+                                           <option value="0">0（Min）</option>
+                                           <option value="1">1</option>
+                                           <option value="2">2</option>
+                                           <option value="3">3</option>
+                                           <option value="4">4</option>
+                                           <option value="5">5（Max）</option>
+                                </select>
+                                <input type="hidden" name="meal" value="{{ meal.id }}">
+                                <div>
+                                    <button type="submit" class="btn btn-primary">Vote</button>
+                                </div>
+                            </div>
+                              <a href="{% url 'meal:delete' meal.id %}" class=" m-3 btn btn-primary">Delete</a>
+                              <a href="{% url 'meal:update' meal.id %}" class="m-3 btn btn-primary">Update</a>
+                        </form>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

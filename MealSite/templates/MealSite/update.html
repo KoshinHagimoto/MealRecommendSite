@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block h1 %}
+Update Meal data
+{% endblock %}
+
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+      {{ form.as_p }}
+    <button type="submit">Update</button>
+</form>
+{% endblock %}

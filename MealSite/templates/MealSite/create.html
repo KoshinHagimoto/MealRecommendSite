@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block h1 %}
+Meal Recommender
+{% endblock %}
+
+{% block content %}
+    <h2>Add a new meal</h2>
+    <form action="" method="post"  class="p-4 m-4 bg-light border border-success rounded form-group">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-success mt-4">Submit</button>
+    </form>
+{% endblock %}
