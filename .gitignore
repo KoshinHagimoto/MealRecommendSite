@@ -7,4 +7,4 @@ __pychche__/
 /static/*
 !/static/.gitkeep
 
-db.sqlight3
+db.sqlite3
